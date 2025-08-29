@@ -25,7 +25,7 @@ A modern, minimalist, always-on-top keyboard and mouse visualizer for Windows, p
 ### For Users
 
 1.  Go to the [Releases page](https://github.com/your-username/keycast/releases) of this repository.
-2.  Download the latest `KeyCast.exe` file From [Here](www.google.com).
+2.  Download the latest `KeyCast.exe` file From [Here]([www.google.com](https://github.com/akasumitlamba/KeyCast/releases/download/v1.0.0/KeyCast.exe)).
 3.  Run the executable. No installation is needed!
 
 **Important:** For the app to capture all keyboard and mouse events, you may need to **right-click `KeyCast.exe` and select "Run as administrator"**.
