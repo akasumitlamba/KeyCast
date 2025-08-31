@@ -1,7 +1,5 @@
 # KeyCast
 
-
-
 A modern, minimalist, always-on-top keyboard and mouse visualizer for Windows, perfect for screencasts, presentations, and tutorials.
 
 <img width="529" height="92" alt="image" src="https://github.com/user-attachments/assets/0ac46b94-2183-4d38-9b49-1abbcc5900a7" />
