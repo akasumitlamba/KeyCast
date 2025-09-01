@@ -8,6 +8,7 @@ A modern, minimalist, always-on-top keyboard and mouse visualizer for Windows, p
 
 ## ✨ Features
 
+
 * **Real-time Display**: Instantly shows keyboard presses, including shortcuts with modifiers (Ctrl, Alt, Shift).
 * **Mouse Visualization**: Clearly indicates left, middle, and right mouse clicks, with a special blink effect for scrolling.
 * **Modern & Minimalist**: A clean, borderless design that looks great on any desktop.
