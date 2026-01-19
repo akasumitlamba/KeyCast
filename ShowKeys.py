@@ -5,21 +5,18 @@ import threading
 from collections import deque
 from PIL import Image
 import pystray
-import sys  # NEW import
-import os   # NEW import
+import sys 
+import os  
 
-# --- NEW: Helper function to find data files in the .exe ---
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
 
-# --- Configuration ---
 APP_WIDTH = 350
 APP_HEIGHT = 60
 BG_COLOR = "#282a36"
@@ -52,16 +49,13 @@ class KeyCastApp:
         self.key_font = font.Font(family=FONT_FAMILY, size=KEY_FONT_SIZE, weight="bold")
         self.mouse_font = font.Font(family=FONT_FAMILY, size=MOUSE_FONT_SIZE, weight="bold")
         self.mouse_title_font = font.Font(family=FONT_FAMILY, size=7)
-
         self.main_frame = tk.Frame(self.root, bg=BG_COLOR, highlightthickness=2, highlightbackground=ACCENT_COLOR)
         self.main_frame.pack(expand=True, fill="both")
-
         self.key_history = deque(maxlen=MAX_KEYS_DISPLAYED)
         self.mouse_buttons_state = {'LMB': False, 'RMB': False, 'MMB': False}
         self.active_modifiers = set()
         self.idle_timer_id = None
         self.window_visible = True
-
         self._create_widgets()
         self._setup_bindings()
         self.start_background_tasks()
@@ -109,11 +103,8 @@ class KeyCastApp:
 
     def run(self):
         self.root.mainloop()
-
-    # --- System Tray Methods ---
-    def _run_tray_icon(self):
+   def _run_tray_icon(self):
         try:
-            # MODIFIED: Use the resource_path helper to find the icon
             icon_path = resource_path("KeyCast.ico")
             image = Image.open(icon_path)
             menu = (
@@ -123,7 +114,6 @@ class KeyCastApp:
             self.tray_icon = pystray.Icon("KeyCast", image, "KeyCast", menu)
             self.tray_icon.run()
         except FileNotFoundError:
-            # This error will now be more accurate
             print(f"Error: Icon file not found at {resource_path('KeyCast.ico')}")
         except Exception as e:
             print(f"An error occurred with the system tray: {e}")
@@ -134,8 +124,6 @@ class KeyCastApp:
         else:
             self.root.deiconify()
         self.window_visible = not self.window_visible
-
-    # --- Event Handlers ---
     def on_press(self, key):
         self._reset_idle_timer()
         key_str = self._format_key(key)
@@ -172,8 +160,6 @@ class KeyCastApp:
         self.key_history.append(scroll_dir)
         self.root.after(0, self._update_key_display)
         self.root.after(0, self._trigger_scroll_blink)
-
-    # --- UI Update & Animation Methods ---
     def _update_key_display(self, trim_to_fit=True):
         if trim_to_fit:
             label_width = self.key_display_label.winfo_width()
@@ -221,7 +207,6 @@ class KeyCastApp:
         canvas.config(bg=SCROLL_COLOR); canvas.itemconfig(wheel, fill=BG_COLOR); canvas.itemconfig(scroller, fill=SCROLL_COLOR)
         self.root.after(BLINK_DURATION_MS, self._update_mouse_display)
 
-    # --- Utility Methods ---
     def _is_modifier(self, key):
         return hasattr(key, 'name') and any(s in key.name for s in ['shift', 'ctrl', 'alt', 'cmd'])
 
@@ -235,7 +220,7 @@ class KeyCastApp:
                 if key_name.startswith(mod): return mappings.get(mod, mod.capitalize())
             return mappings.get(key_name, key_name.capitalize())
 
-    # --- Window Management ---
+    # Window Manage
     def on_drag_start(self, event):
         self._offset_x = self.root.winfo_pointerx() - self.root.winfo_x()
         self._offset_y = self.root.winfo_pointery() - self.root.winfo_y()
@@ -258,4 +243,5 @@ class KeyCastApp:
 
 if __name__ == "__main__":
     app = KeyCastApp()
+
     app.run()
