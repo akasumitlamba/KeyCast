@@ -1,0 +1,3 @@
+pynput
+pillow
+pystray
