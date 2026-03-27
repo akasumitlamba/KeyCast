@@ -30,6 +30,8 @@ A modern, minimalist, always-on-top keyboard and mouse visualizer for Windows, p
 
 The app will appear on your screen and can be managed from its icon in the system tray ( ^ icon next to your clock).
 
+**To exit the app- click on the window and then press esc key.**
+
 ### For Developers (Building from Source)
 
 Follow these steps to build the application yourself.
